@@ -1,6 +1,6 @@
-// ignore_for_file: file_names
-
+import 'package:car/home/filterscreen.dart';
 import 'package:flutter/material.dart';
+import 'package:image_card/image_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -25,117 +25,139 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Padding(
         padding: const EdgeInsets.only(left: 15, right: 10, top: 30),
         child: SafeArea(
-          child: Expanded(
-            child: Column(
-              children: [
-                const Row(
-                  children: [
-                    CircleAvatar(
-                      backgroundColor: Colors.white,
-                      child: Icon(
-                        Icons.arrow_back,
-                        size: 25,
-                        color: Colors.black,
+          // child: Expanded(
+          child: Column(
+            children: [
+              const Row(
+                children: [
+                  CircleAvatar(
+                    backgroundColor: Colors.white,
+                    child: Icon(
+                      Icons.arrow_back,
+                      size: 25,
+                      color: Colors.black,
+                    ),
+                  ),
+                  Padding(padding: EdgeInsets.only(left: 10)),
+                  Text(
+                    'Car Rent',
+                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                  ),
+                  Spacer(),
+                  CircleAvatar(
+                    backgroundColor: Colors.white,
+                    child: Icon(
+                      Icons.notification_important_outlined,
+                      size: 25,
+                      color: Colors.black,
+                    ),
+                  ),
+                ],
+              ),
+              const Padding(padding: EdgeInsets.only(top: 15)),
+              Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      width: 390,
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(20.0),
                       ),
-                    ),
-                    Padding(padding: EdgeInsets.only(left: 10)),
-                    Text(
-                      'Car Rent',
-                      style:
-                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                    ),
-                    Spacer(),
-                    CircleAvatar(
-                      backgroundColor: Colors.white,
-                      child: Icon(
-                        Icons.notification_important_outlined,
-                        size: 25,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ],
-                ),
-                const Padding(padding: EdgeInsets.only(top: 15)),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        width: 390,
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey),
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
-                        child: Row(
-                          children: [
-                            const Icon(Icons.search),
-                            Expanded(
-                              child: TextField(
-                                onTap: () {},
-                                decoration: const InputDecoration(
-                                  hintText: 'Search anything...',
-                                  border: InputBorder.none,
-                                ),
+                      child: Row(
+                        children: [
+                          const Icon(Icons.search),
+                          Expanded(
+                            child: TextField(
+                              onTap: () {},
+                              decoration: const InputDecoration(
+                                hintText: 'Search anything...',
+                                border: InputBorder.none,
                               ),
                             ),
-                            IconButton(
-                              onPressed: () {
-                                // const Search();
-                                // Navigator.push(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //         builder: (context) =>
-                                //             const Search()));
-                              },
-                              icon: const Icon(Icons.tune),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const Padding(padding: EdgeInsets.only(top: 20)),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    selectitem('images/2554936.png', 'Car '),
-                    selectitem('images/bikes.png', 'Bike '),
-                    selectitem('images/cycle.png', 'Bycycle '),
-                  ],
-                ),
-                const Padding(padding: EdgeInsets.only(top: 20)),
-                SizedBox(
-                  height: 100,
-                  width: 100,
-                  child: SizedBox(
-                    child: Expanded(
-                      child: ListView(
-                        children: [
-                          Column(
-                            children: [
-                              Row(
-                                children: [
-                                  Card(
-                                    color: Colors.white,
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(20)),
-                                  ),
-                                ],
-                              ),
-                            ],
                           ),
+                          IconButton(
+                            onPressed: () {
+                              const Filter();
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const Filter()));
+                            },
+                            icon: const Icon(Icons.tune),
+                          )
                         ],
                       ),
                     ),
                   ),
-                )
-              ],
-            ),
+                ],
+              ),
+              const Padding(padding: EdgeInsets.only(top: 20)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  selectitem('images/2554936.png', 'Car '),
+                  selectitem('images/bikes.png', 'Bike '),
+                  selectitem('images/cycle.png', 'Bycycle '),
+                ],
+              ),
+              const Padding(padding: EdgeInsets.only(top: 10)),
+              Expanded(child: _loop())
+              // Expanded(
+              //   child: GridView.count(
+              //       crossAxisCount: 2,
+              //       crossAxisSpacing: 4.0,
+              //       mainAxisSpacing: 10.0,
+              //       children: [_loop()]
+
+              //       //  List.generate(10, (index) {
+              //       //   return Expanded(
+              //       //     child: FillImageCard(
+              //       //       heightImage: 100,
+              //       //       imageProvider: const AssetImage('images/car2.png'),
+              //       //       // tags: [_tag('Category', () {}), _tag('Product', () {})],
+              //       //       title: _title(),
+              //       //       description: _content(),
+              //       //     ),
+              //       //   );
+              //       // }),
+              //       ),
+              // )
+            ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget _title({Color? color}) {
+    return Text(
+      'Car',
+      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: color),
+    );
+  }
+
+  Widget _content({Color? color}) {
+    return Text(
+      'This a card description',
+      style: TextStyle(color: color),
+    );
+  }
+
+  Widget _loop() {
+    List<Widget> imageCards = [];
+    for (var i = 0; i < 10; i++) {
+      imageCards.add(FillImageCard(
+        heightImage: 100,
+        imageProvider: const AssetImage('images/car2.png'),
+        title: _title(),
+        description: _content(),
+      ));
+    }
+    return GridView.count(
+      crossAxisCount: 2,
+      children: imageCards,
     );
   }
 
@@ -174,4 +196,30 @@ class _HomeScreenState extends State<HomeScreen> {
       ],
     );
   }
+}
+
+class CarModel {
+  final String carName;
+  final String carImage;
+  final String location;
+  final String price;
+
+  CarModel(
+      {required this.carImage,
+      required this.carName,
+      required this.location,
+      required this.price});
+
+  static List<CarModel> carList = [
+    CarModel(
+        carImage: 'EDFVSD',
+        carName: 'carName',
+        location: 'location',
+        price: 'price'),
+    CarModel(
+        carImage: 'carImage',
+        carName: 'carName',
+        location: 'location',
+        price: 'price')
+  ];
 }
