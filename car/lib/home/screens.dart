@@ -1,3 +1,4 @@
+import 'package:car/car_model/car_mode.dart';
 import 'package:car/home/filterscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:image_card/image_card.dart';
@@ -103,7 +104,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               const Padding(padding: EdgeInsets.only(top: 10)),
-              Expanded(child: _loop())
+              Expanded(
+                child: CarApp(),
+              ),
+
               // Expanded(
               //   child: GridView.count(
               //       crossAxisCount: 2,
@@ -223,3 +227,83 @@ class CarModel {
         price: 'price')
   ];
 }
+
+class CarModels {
+  final String carName;
+  final String carImage;
+  final String location;
+  final String price;
+
+  CarModels({
+    required this.carImage,
+    required this.carName,
+    required this.location,
+    required this.price,
+  });
+
+  static List<CarModel> carList = [
+    CarModel(
+      carImage: 'assets/car1.png',
+      carName: 'Car 1',
+      location: 'Location 1',
+      price: '\$30,000',
+    ),
+    CarModel(
+      carImage: 'assets/car2.png',
+      carName: 'Car 2',
+      location: 'Location 2',
+      price: '\$25,000',
+    ),
+  ];
+}
+
+// class CarGridView extends StatelessWidget {
+//   Widget selectItem(String carImageAsset, String carName) {
+//     return GestureDetector(
+//       onTap: () {
+//         // Handle tap action for each car item
+//         print('Tapped on $carName');
+//       },
+//       child: Container(
+//         padding: const EdgeInsets.all(8),
+//         height: 150,
+//         decoration: BoxDecoration(
+//           color: Colors.grey[200],
+//           borderRadius: BorderRadius.circular(20),
+//         ),
+//         child: Column(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: [
+//             Image.asset(
+//               carImageAsset,
+//               width: 80,
+//               height: 80,
+//             ),
+//             const SizedBox(height: 8),
+//             Text(
+//               carName,
+//               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+//   @override
+//   Widget build(BuildContext context) {
+//     return GridView.builder(
+//       itemCount: CarModel.carList.length,
+//       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+//         crossAxisCount: 2,
+//         crossAxisSpacing: 10,
+//         mainAxisSpacing: 10,
+//       ),
+//       itemBuilder: (BuildContext context, int index) {
+//         return selectItem(
+//           CarModel.carList[index].carImage,
+//           CarModel.carList[index].carName,
+//         );
+//       },
+//     );
+//   }
+// }
