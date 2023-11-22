@@ -1,13 +1,16 @@
-// class Carlist {
-//   int _id;
-//   String _name;
-//   String _image;
+// import 'package:sqflite/sqflite.dart';
+// import 'package:path/path.dart';
 
-//   //Constructor
-//   Carlist(this._id, this._name, this._image);
+// Future<Database> get database async {
+//   if (_database != null) {
+//     return_database;
+//   }
+//   _databse = await _insitialize();
+//   return _database;
+// }
 
-//   //Gettters
-//   int get id => _id;
-//   String get name => _name;
-//   String get image => _image;
+// Future<String> get fullpath async {
+//   const name = 'carlis';
+//   final path = await getDatabasesPath();
+//   return join(path, name);
 // }
